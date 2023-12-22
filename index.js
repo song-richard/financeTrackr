@@ -5,4 +5,4 @@ const app = express();
 
 app.listen(PORT, (req, res) => {
     console.log('Now listening..')
-})
+});
