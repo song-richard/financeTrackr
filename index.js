@@ -28,7 +28,7 @@ async function startApp() {
         await sequelize.sync();
         console.log('Database synchronized.');
 
-        app.use('/finTraK/public', express.static(path.join(__dirname, 'public')));
+        app.use('/financeTrackr/public', express.static(path.join(__dirname, 'public')));
 
         //Moved authRoutes to app.js to debug - fixed the bug
         // app.use(authRoutes);
