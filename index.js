@@ -59,7 +59,7 @@ async function startApp() {
             } catch (error) {
               console.error(error);
               res.status(500).json({ error: 'Internal Server Error' });
-            }
+            };
           });
 
         app.get('/dashboard', (req, res) => {
@@ -73,8 +73,8 @@ async function startApp() {
         });
     } catch (error) {
         console.error('Error starting the app:', error);
-    }
-}
+    };
+};
 
 startApp();
 
