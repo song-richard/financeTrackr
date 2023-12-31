@@ -8,8 +8,6 @@ const User = require('./models/User')
 
 const exphbs = require('express-handlebars');
 
-const authRoutes = require('./routes/authRoutes');
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
