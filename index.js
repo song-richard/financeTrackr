@@ -47,7 +47,7 @@ async function startApp() {
         //Had to move the route below from authRoutes to fix 'cannot read props of undefined (reading 'create)
         app.post('/login', async (req, res) => {
             const { username, password } = req.body;
-          
+
             try {
               const newUser = await User.create({
                 username: username,
