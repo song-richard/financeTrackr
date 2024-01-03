@@ -21,13 +21,21 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const response = await axios.post('/login', { username, password });
             //Debug
-                const project = await Project.findByPk(username);
-                if (project === null) {
-                console.log('Not found!');
-                } else {
-                 console.log(project instanceof Project); // true
-                // Its primary key is 123
+            const user=user.find(user.username= req.body.username)
+            if (user == null){
+                return response.status(400).send('cannot find user')
             }
+            try{
+                if(await bcrypt.compare(req.body.password, user.password)) {
+                    res.send('Sucess')
+                }else {
+                    res.send('not allowed')
+                }
+
+            } catch {
+                response.status(500).send()
+            }
+                
             console.log(username);
             console.log(password);
         } catch (error) {

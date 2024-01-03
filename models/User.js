@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 const { DataTypes } = require('sequelize');
 
+
 const User = sequelize.define('User', {
   username: {
     allowNull: false,
