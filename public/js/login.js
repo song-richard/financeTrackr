@@ -21,6 +21,13 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const response = await axios.post('/login', { username, password });
             //Debug
+                const project = await Project.findByPk(username);
+                if (project === null) {
+                console.log('Not found!');
+                } else {
+                 console.log(project instanceof Project); // true
+                // Its primary key is 123
+            }
             console.log(username);
             console.log(password);
         } catch (error) {
