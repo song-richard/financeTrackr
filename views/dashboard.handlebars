@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-</head>frtfg
+</head>
 <body>
-    <h1>Dashboard</h1>
+    <h1>Welcome, {{user.username}}!</h1>
+
+    <h2>Your Expenses:</h2>
+    <ul>
+        {{#each user.Expenses}}
+            <li>
+                Amount: {{this.amount}}, Date: {{this.date}}, Type: {{this.type}}
+            </li>
+        {{/each}}
+    </ul>
 </body>
 </html>
