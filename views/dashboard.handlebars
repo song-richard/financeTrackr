@@ -6,6 +6,15 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Dashboard</h1>
+    <h1>Welcome, {{user.username}}!</h1>
+
+    <h2>Your Expenses:</h2>
+    <ul>
+        {{#each user.Expenses}}
+            <li>
+                Amount: {{this.amount}}, Date: {{this.date}}, Type: {{this.type}}
+            </li>
+        {{/each}}
+    </ul>
 </body>
 </html>
