@@ -16,3 +16,8 @@ const Expense = sequelize.define('Expense', {
       type: DataTypes.STRING(50),
     },
   });
+
+  User.hasMany(Expense);
+  Expense.belongsTo(User);
+  
+  module.exports = Expense;
