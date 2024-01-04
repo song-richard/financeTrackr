@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const username = document.querySelector('#registerUsername').value;
         const password = document.querySelector('#registerPassword').value;
         try {
-            await axios.post('/login', { username, password });
+            await axios.post('/register', { username, password });
             console.log('User registered successfully!');
         } catch (error) {
             console.error(error);
@@ -18,8 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const handleLogin = async function() {
         const username = document.querySelector('#loginUsername').value;
         const password = document.querySelector('#loginPassword').value;
+        
         try {
-            const response = await axios.post('/login', { username, password });
+            await axios.post('/login', { username, password });
             //Debug
             console.log(username);
             console.log(password);

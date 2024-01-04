@@ -45,7 +45,7 @@ async function startApp() {
         });
 
         //Had to move the route below from authRoutes to fix 'cannot read props of undefined (reading 'create)
-        app.post('/login', async (req, res) => {
+        app.post('/register', async (req, res) => {
             const { username, password } = req.body;
 
             try {
@@ -57,6 +57,31 @@ async function startApp() {
               res.status(201).json(newUser);
               console.log("New user added successfully!");
             } catch (error) {
+              console.error(error);
+              res.status(500).json({ error: 'Internal Server Error' });
+            };
+          });
+
+          app.post('/login', async (req, res) => {
+            const { username, password } = req.body;
+
+            try {
+              User.findOne({ where: {
+                username: req.body.username
+            }                                  
+              }).then(userData => {
+                if(!userData){
+                  res.status(400).json({message: 'No data found'})
+                  return 
+                }
+                const validatePassword= bcrypt.compareSync(password, userData.password);
+                if(!validatePassword){
+                  res.status(400).json({message: 'Not Authorized'})
+                  return
+                }
+              })  
+              res.json({message:'Sucessfully logged in'})
+              } catch (error) {
               console.error(error);
               res.status(500).json({ error: 'Internal Server Error' });
             };
