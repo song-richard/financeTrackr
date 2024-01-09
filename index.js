@@ -4,7 +4,12 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const sequelize = require('./config/connection');
 const User = require('./models/User')
+
+const RegisterRoute = require('./controllers/RegisterRoute');
+
+
 const PORT = process.env.PORT || 3001;
+
 const exphbs = require('express-handlebars');
 
 app.use(express.urlencoded({ extended: true }));
