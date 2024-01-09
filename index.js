@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const sequelize = require('./config/connection');
 const User = require('./models/User')
 
-const RegisterRoute = require('./controllers/RegisterRoute');
+const RegisterRoute = require('./controllers/routes/RegisterRoute');
 
 
 const PORT = process.env.PORT || 3001;
@@ -29,7 +29,7 @@ async function startApp() {
     await sequelize.sync();
     console.log('Database synchronized.');
 
-    app.use('/financeTrackr/public', express.static(path.join(__dirname, 'public')));
+    app.use(express.static(__dirname));
 
     //Moved authRoutes to app.js to debug - fixed the bug
     // app.use(authRoutes);
@@ -66,31 +66,31 @@ async function startApp() {
 
     app.post('/login', async (req, res) => {
       const { username, password } = req.body;
-
+    
       try {
         const userData = await User.findOne({
           where: {
             username: req.body.username
           }
         });
-        console.log(userData);
+    
         if (!userData) {
-          console.error('incorrect user credentials')
-          res.status(400).json({ message: 'No data found' })
+          console.error('user not found');
+          res.status(400).json({ message: 'User not found' });
         } else {
           const validatePassword = bcrypt.compareSync(password, userData.password);
           if (!validatePassword) {
-            res.status(400).json({ message: 'Not Authorized' })
+            console.error('incorrect password');
+            res.status(400).json({ message: 'Incorrect password' });
+          } else {
+            console.log("Successfully signed in");
+            res.status(200).json({ message: 'Successfully logged in' });
           }
-          else{
-          console.log("Succesfully signed in");
-          res.status(200).json({ message: 'Sucessfully logged in' })
-        }}
+        }
       } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
       }
-      
     });
 
       app.get('/dashboard', (req, res) => {
