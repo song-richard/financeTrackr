@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,13 @@
 </head>
 <body>
   <h1>Welcome, {{user.username}}!</h1>
-  <!-- Display other user-specific information as needed -->
+  
+  <!-- Display expenses for the user -->
+  <ul>
+    {{#each user.expenses}}
+      <li>{{this.name}} - {{this.spending}}</li>
+    {{/each}}
+  </ul>
+
 </body>
 </html>
