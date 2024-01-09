@@ -69,7 +69,7 @@ async function startApp() {
     app.get('/login', (req, res) => {
       // If the user is already logged in, redirect the request to another route
       if (req.session.logged_in) {
-        res.redirect('/dashboard');
+        res.redirect('dashboard');
         return;
       }
 
@@ -115,8 +115,7 @@ async function startApp() {
             res.status(400).json({ message: 'Incorrect password' });
           } else {
             console.log("Successfully signed in");
-            res.status(200).json({ message: 'Successfully logged in' });
-
+            res.render('dashboard', { isAuthenticated: true });
           }
         }
       } catch (error) {
