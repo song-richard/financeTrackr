@@ -23,7 +23,7 @@ Expense.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    needed_funding: {
+    spending: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
@@ -44,4 +44,4 @@ Expense.init(
   }
 );
 
-module.exports = Project;
+module.exports = Expense;

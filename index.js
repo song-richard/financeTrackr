@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const sequelize = require('./config/connection');
 const User = require('./models/User')
 
-const RegisterRoute = require('./controllers/RegisterRoute');
+const RegisterRoute = require('./controllers/routes/RegisterRoute');
 
 
 const PORT = process.env.PORT || 3001;
