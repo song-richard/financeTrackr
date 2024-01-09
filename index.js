@@ -4,8 +4,9 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const sequelize = require('./config/connection');
 const User = require('./models/User')
-
+const withAuth = require('./utils/auth');
 const RegisterRoute = require('./controllers/routes/RegisterRoute');
+const Expense = require('./models/Expense');
 
 
 const PORT = process.env.PORT || 3001;
@@ -46,6 +47,36 @@ async function startApp() {
       res.render('partials/login');
     });
 
+    app.get('/dashboard', withAuth, async (req, res) => {
+      try {
+        // Find the logged in user based on the session ID
+        const userData = await User.findByPk(req.session.user_id, {
+          attributes: { exclude: ['password'] },
+          include: [{ model: Expense }],
+        });
+
+        const user = userData.get({ plain: true });
+
+        res.render('dashboard', {
+          ...user,
+          logged_in: true
+        });
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    });
+
+    app.get('/login', (req, res) => {
+      // If the user is already logged in, redirect the request to another route
+      if (req.session.logged_in) {
+        res.redirect('/dashboard');
+        return;
+      }
+
+      res.render('login');
+    });
+
+
     //Had to move the route below from authRoutes to fix 'cannot read props of undefined (reading 'create)
     app.post('/register', async (req, res) => {
       const { username, password } = req.body;
@@ -55,7 +86,7 @@ async function startApp() {
           username: username,
           password: password,
         });
-    
+
         res.status(201).json(newUser);
         console.log("New user added successfully!");
       } catch (error) {
@@ -66,14 +97,14 @@ async function startApp() {
 
     app.post('/login', async (req, res) => {
       const { username, password } = req.body;
-    
+
       try {
         const userData = await User.findOne({
           where: {
             username: req.body.username
           }
         });
-    
+
         if (!userData) {
           console.error('user not found');
           res.status(400).json({ message: 'User not found' });
@@ -85,6 +116,7 @@ async function startApp() {
           } else {
             console.log("Successfully signed in");
             res.status(200).json({ message: 'Successfully logged in' });
+
           }
         }
       } catch (error) {
@@ -93,9 +125,9 @@ async function startApp() {
       }
     });
 
-      app.get('/dashboard', (req, res) => {
-          res.render('dashboard', { isAuthenticated: false });
-      });
+    app.get('/dashboard', (req, res) => {
+      res.render('dashboard', { isAuthenticated: false });
+    });
 
     // Start the server
 
