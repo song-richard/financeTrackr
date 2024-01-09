@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             await axios.post('/register', { username, password });
             console.log('User registered successfully!');
+
         } catch (error) {
             console.error(error);
         };
