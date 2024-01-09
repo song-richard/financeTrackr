@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
 </head>
 <body>
-    <h1>Welcome, {{user.username}}!</h1>
+  <h1>Welcome, {{user.username}}!</h1>
+  
+  <!-- Display expenses for the user -->
+  <ul>
+    {{#each user.expenses}}
+      <li>{{this.name}} - {{this.spending}}</li>
+    {{/each}}
+  </ul>
 
-    <h2>Your Expenses:</h2>
-    <ul>
-        {{#each user.Expenses}}
-            <li>
-                Amount: {{this.amount}}, Date: {{this.date}}, Type: {{this.type}}
-            </li>
-        {{/each}}
-    </ul>
 </body>
 </html>
