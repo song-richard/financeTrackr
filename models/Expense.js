@@ -1,23 +1,47 @@
-const { DataTypes } = require('sequelize');
-const User = require('./User');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-const Expense = sequelize.define('Expense', {
-    amount: {
-      allowNull: false,
-      type: DataTypes.DECIMAL(10, 2),
-    },
-    date: {
-      allowNull: false,
-      type: DataTypes.DATE,
-    },
-    type: {
-      allowNull: false,
-      type: DataTypes.STRING(50),
-    },
-  });
+class Expense extends Model {}
 
-  User.hasMany(Expense);
-  Expense.belongsTo(User);
-  
-  module.exports = Expense;
+Expense.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    needed_funding: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'project',
+  }
+);
+
+module.exports = Project;
