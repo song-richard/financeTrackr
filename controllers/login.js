@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const handleLogin = async function() {
         const username = document.querySelector('#loginUsername').value;
         const password = document.querySelector('#loginPassword').value;
-        
+
         try {
             await axios.post('/login', { username, password });
             //Debug
