@@ -44,4 +44,4 @@ Expense.init(
   }
 );
 
-module.exports = Project;
+module.exports = Expense;
