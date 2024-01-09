@@ -23,7 +23,7 @@ Expense.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    needed_funding: {
+    spending: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
