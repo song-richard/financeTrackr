@@ -71,10 +71,19 @@ async function startApp() {
       if (req.session.logged_in) {
         res.redirect('dashboard');
         return;
+      } else {
+        res.render('login');
       }
-
-      res.render('login');
     });
+
+    app.get('/', async (req, res) => {
+      try {
+          res.render('homepage');
+      } catch (err) {
+          res.status(500).json(err);
+      }
+  }
+  );
 
 
     //Had to move the route below from authRoutes to fix 'cannot read props of undefined (reading 'create)
@@ -110,12 +119,13 @@ async function startApp() {
           res.status(400).json({ message: 'User not found' });
         } else {
           const validatePassword = bcrypt.compareSync(password, userData.password);
+          const user = userData.get({ plain: true });
           if (!validatePassword) {
             console.error('incorrect password');
             res.status(400).json({ message: 'Incorrect password' });
           } else {
             console.log("Successfully signed in");
-            res.render('dashboard', { isAuthenticated: true });
+            res.render('dashboard', { isAuthenticated: true, user });
           }
         }
       } catch (error) {
