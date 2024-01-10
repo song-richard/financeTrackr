@@ -1,43 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  
 </head>
+
 <body class="font-sans bg-gray-100">
 
   {{#if isAuthenticated}}
-    <div class="container mx-auto p-4">
+  <div class="container mx-auto p-4">
     <h1 class="text-3xl font-bold mb-4 text-center my-auto">Welcome to financeTrackr, <br> {{username}}!</h1>
-  
-      <form id="expenseForm" class="mb-4">
-        <div class="mb-2">
-          <label for="name" class="block text-sm font-medium text-gray-600">Name:</label>
-          <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded-md">
-        </div>
-        <div class="mb-2">
-          <label for="description" class="block text-sm font-medium text-gray-600">Description:</label>
-          <input type="text" id="description" name="description" class="mt-1 p-2 w-full border rounded-md">
-        </div>
-        <div class="mb-2">
-          <label for="spending" class="block text-sm font-medium text-gray-600">Spending:</label>
-          <input type="number" id="spending" name="spending" step="0.01" required class="mt-1 p-2 w-full border rounded-md">
-        </div><br>
-        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit Expense</button>
-      </form><br>
 
-      <ul>
-        {{#each expenses}}
-          <li class="mb-2">Name: {{this.name}} -{{this.description}} - ${{this.spending}} <br> Date:{{this.date_created}}</li><br>
-        {{/each}}
-      </ul>
+    <form id="expenseForm" class="mb-4">
+      <div class="mb-2">
+        <label for="name" class="block text-sm font-medium text-gray-600">Name:</label>
+        <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded-md">
+      </div>
+      <div class="mb-2">
+        <label for="description" class="block text-sm font-medium text-gray-600">Description:</label>
+        <input type="text" id="description" name="description" class="mt-1 p-2 w-full border rounded-md">
+      </div>
+      <div class="mb-2">
+        <label for="spending" class="block text-sm font-medium text-gray-600">Spending:</label>
+        <input type="number" id="spending" name="spending" step="0.01" required
+          class="mt-1 p-2 w-full border rounded-md">
+      </div><br>
+      <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit
+        Expense</button>
+    </form><br>
+
+    <div id="myModal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 overflow-auto">
+      <div class="modal-content bg-white p-8 mx-auto mt-10">
+        <span class="close text-2xl font-bold cursor-pointer absolute top-2 right-4" onclick="closeModal">&times;</span>
+        <p id="modalMessage" class="text-red-500"></p>
+      </div>
     </div>
+
+    <ul>
+      {{#each expenses}}
+      <li class="mb-2"><b>Name:</b> {{this.name}} <br> <b>Description:</b> {{this.description}} <br> <b>Amount:</b> ${{this.spending}} <br> <b>Date:</b>{{this.date_created}}
+      </li><br>
+      {{/each}}
+    </ul>
+  </div>
   {{else}}
-    <div class="container mx-auto p-4">
-      <p class="text-red-500">User not authenticated. Please log in.</p>
-    </div>
+  <div class="container mx-auto p-4">
+    <p class="text-red-500">User not authenticated. Please log in.</p>
+  </div>
   {{/if}}
 
   <script src="../controllers/addExpense.js"></script>
   <script src="../controllers/login.js"></script>
+  <script src="../controllers/modal.js"></script>
+  
 </body>
+
 </html>

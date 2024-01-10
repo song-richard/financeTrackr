@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const bcrypt = require('bcrypt');
 const sequelize = require('./config/connection');
 const User = require('./models/User')
@@ -89,15 +88,15 @@ async function startApp() {
 
     app.get('/login', (req, res) => {
       if (req.session.logged_in) {
-        res.redirect('dashboard');
+        res.redirect('/dashboard');
         return;
       }
 
-      res.render('login');
+      res.render('/login');
     });
 
     app.get('/', (req, res) => {
-      res.redirect('signup');
+      res.redirect('/signup');
     })
 
     app.post('/register', async (req, res) => {
@@ -138,8 +137,6 @@ async function startApp() {
         const validatePassword = bcrypt.compareSync(password, userData.password);
     
         if (!validatePassword) {
-          console.error('Incorrect password');
-          res.status(400).json({ message: 'Incorrect password' });
           return;
         }
     
