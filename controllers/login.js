@@ -22,9 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             await axios.post('/login', { username, password });
-            //Debug
-            console.log(username);
-            console.log(password);
         } catch (error) {
             console.error(error);
         }
