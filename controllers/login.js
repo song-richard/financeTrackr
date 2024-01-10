@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.querySelector('#loginPassword').value;
 
         try {
-            await axios.post('/login', { username, password });
+            await axios.post('/signup', { username, password });
         } catch (error) {
             console.error(error);
         }

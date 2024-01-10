@@ -7,8 +7,8 @@
 
   {{#if isAuthenticated}}
     <div class="container mx-auto p-4">
-      <h1 class="text-3xl font-bold mb-4">Welcome, {{username}}!</h1>
-
+    <h1 class="text-3xl font-bold mb-4 text-center my-auto">Welcome to financeTrackr, <br> {{username}}!</h1>
+  
       <form id="expenseForm" class="mb-4">
         <div class="mb-2">
           <label for="name" class="block text-sm font-medium text-gray-600">Name:</label>
@@ -27,7 +27,7 @@
 
       <ul>
         {{#each expenses}}
-          <li class="mb-2">Name: {{this.name}} - $ {{this.spending}} <br> Date:{{this.date_created}}</li><br>
+          <li class="mb-2">Name: {{this.name}} -{{this.description}} - ${{this.spending}} <br> Date:{{this.date_created}}</li><br>
         {{/each}}
       </ul>
     </div>

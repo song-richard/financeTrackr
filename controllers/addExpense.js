@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('name').value;
 
         try {
-            const user_id = window.user_id
-
             const response = await axios.post('/expenses', {
                 name,
                 description,
@@ -21,10 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 date_created,
             });
 
-            console.log('Response:', response);
+            document.getElementById('description').value = '';
+            document.getElementById('spending').value = '';
+            document.getElementById('name').value = '';
 
             if (response.status === 201) {
                 console.log('Expense added successfully');
+                window.location.reload();
             } else {
                 console.error('Error adding expense');
             }
