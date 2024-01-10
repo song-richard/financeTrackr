@@ -134,6 +134,22 @@ async function startApp() {
       }
     });
 
+    app.post('/dashboard', async (req, res) => {
+      const { name } = req.body;
+
+      try {
+        const newExpense = await Expense.create({
+          name :name
+        });
+
+        res.status(201).json(newExpense);
+        console.log("New Expense added!");
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      };
+    });
+
     app.get('/dashboard', (req, res) => {
       res.render('dashboard', { isAuthenticated: false });
     });

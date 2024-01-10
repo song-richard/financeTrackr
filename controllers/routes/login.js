@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
             //Debug
             console.log(username);
             console.log(password);
+            
         } catch (error) {
             console.error(error);
         }
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         //const password = document.querySelector('#loginPassword').value;
 
         try {
-            await axios.post('/expense', { name});
+            await axios.post('/dashboard', { name});
             
             
 
