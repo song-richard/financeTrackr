@@ -1,19 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <h1>Welcome, {{{user.username}}}!</h1>
-  
-  <!-- Display expenses for the user -->
-  <ul>
-    {{#each user.expenses}}
-      <li>{{this.name}} - {{this.spending}}</li>
-    {{/each}}
-  </ul>
+<body class="font-sans bg-gray-100">
 
+  {{#if isAuthenticated}}
+    <div class="container mx-auto p-4">
+      <h1 class="text-3xl font-bold mb-4">Welcome, {{username}}!</h1>
+
+      <!-- Expense form -->
+      <form id="expenseForm" class="mb-4">
+        <div class="mb-2">
+          <label for="name" class="block text-sm font-medium text-gray-600">Name:</label>
+          <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded-md">
+        </div>
+        <div class="mb-2">
+          <label for="description" class="block text-sm font-medium text-gray-600">Description:</label>
+          <input type="text" id="description" name="description" class="mt-1 p-2 w-full border rounded-md">
+        </div>
+        <div class="mb-2">
+          <label for="spending" class="block text-sm font-medium text-gray-600">Spending:</label>
+          <input type="number" id="spending" name="spending" step="0.01" required class="mt-1 p-2 w-full border rounded-md">
+        </div><br>
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit Expense</button>
+      </form><br>
+
+      <!-- List of expenses -->
+      <ul>
+        {{#each expenses}}
+          <li class="mb-2">Name: {{this.name}} - $ {{this.spending}} <br> Date:{{this.date_created}}</li><br>
+        {{/each}}
+      </ul>
+    </div>
+  {{else}}
+    <div class="container mx-auto p-4">
+      <p class="text-red-500">User not authenticated. Please log in.</p>
+    </div>
+  {{/if}}
+
+  <script src="../controllers/addExpense.js"></script>
+  <script src="../controllers/login.js"></script>
 </body>
 </html>
