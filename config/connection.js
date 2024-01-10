@@ -18,10 +18,4 @@ if (process.env.JAWSDB_URL) {
   );
 }
 
-//Debug
-console.log('Database connection details:', {
-  name: process.env.DB_NAME,
-  user: process.env.DB_USER,
-});
-
 module.exports = sequelize;

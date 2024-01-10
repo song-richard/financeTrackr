@@ -9,7 +9,6 @@
     <div class="container mx-auto p-4">
       <h1 class="text-3xl font-bold mb-4">Welcome, {{username}}!</h1>
 
-      <!-- Expense form -->
       <form id="expenseForm" class="mb-4">
         <div class="mb-2">
           <label for="name" class="block text-sm font-medium text-gray-600">Name:</label>
@@ -26,7 +25,6 @@
         <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit Expense</button>
       </form><br>
 
-      <!-- List of expenses -->
       <ul>
         {{#each expenses}}
           <li class="mb-2">Name: {{this.name}} - $ {{this.spending}} <br> Date:{{this.date_created}}</li><br>

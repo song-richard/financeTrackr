@@ -39,24 +39,18 @@ app.use(
   })
 );
 
-//Handlebars Config
 const hbs = exphbs.create({
   partialsDir: 'views/partials/',
 });
 
-//Establish connection with DB
 async function startApp() {
   try {
-    // Create the database and synchronize models with the database
     console.log('Connection to the database has been established successfully.');
     await sequelize.sync();
     console.log('Database synchronized.');
 
     app.use(express.static(__dirname));
 
-    //Moved authRoutes to app.js to debug - fixed the bug
-
-    // Configure Handlebars
     app.engine('handlebars', hbs.engine);
     app.set('view engine', 'handlebars');
 
@@ -162,12 +156,8 @@ async function startApp() {
     app.post('/expenses', async (req, res) => {
       console.log('Hit /expenses route'); // Add this line
       try {
-        // Get expense data from the request body
         const { description, spending, date_created, name } = req.body;
-    
-        // Use the user_id from the session
-    
-        // Create a new expense
+
         const newExpense = await Expense.create({
           name, // Add the name attribute
           description,
@@ -176,14 +166,12 @@ async function startApp() {
           user_id,
       });
     
-        // Respond with the newly created expense
         res.status(201).json(newExpense);
       } catch (error) {
         console.error('Error creating expense:', error);
         res.status(500).json({ error: 'Internal Server Error' });
       }
     });
-    
 
     app.listen(PORT, () => {
       console.log(`LISTENING ON PORT ${PORT}`);

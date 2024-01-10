@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('name').value;
 
         try {
-            // Directly access user_id from the session
             const user_id = window.user_id
 
             const response = await axios.post('/expenses', {
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 description,
                 spending,
                 date_created,
-                // user_id, // pulled from req.body
             });
 
             console.log('Response:', response);
