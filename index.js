@@ -157,9 +157,9 @@ async function startApp() {
       console.log('Hit /expenses route'); // Add this line
       try {
         const { description, spending, date_created, name } = req.body;
-
+        const user_id = req.session.user_id;
         const newExpense = await Expense.create({
-          name, // Add the name attribute
+          name,
           description,
           spending,
           date_created,
