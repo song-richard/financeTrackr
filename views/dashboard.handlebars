@@ -11,6 +11,24 @@
   
   <h1>Welcome, {{user.username}}!</h1>
   
+  <div class="add-dish-container">
+    <h2>
+      Form
+    </h2>
+    <form class="expense_form">
+      <label for="name">
+        Expense Name:
+      </label>
+      <br />
+      <textarea id="name" name="name" rows="2" cols="30">
+          </textarea>
+      
+      
+      <button type="submit" value="Submit">
+        Submit
+      </button>
+    </form>
+
   <!-- Display expenses for the user -->
   <ul>
     {{#each user.expenses}}

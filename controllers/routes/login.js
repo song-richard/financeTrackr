@@ -30,11 +30,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    const handleSubmit = async function() {
+        const name = document.querySelector('#name').value;
+        //const password = document.querySelector('#loginPassword').value;
+
+        try {
+            await axios.post('/expense', { name});
+            
+            
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
     if (registerBtn) {
         registerBtn.addEventListener('click', handleRegister);
     };
 
     if (loginBtn) {
         loginBtn.addEventListener('click', handleLogin);
+    };
+    if (submitBtn) {
+        submitBtn.addEventListener('click', handleSubmit);
     };
 });
