@@ -111,6 +111,9 @@ async function startApp() {
           password: password,
         });
 
+        req.session.user_id = newUser.id;
+        req.session.logged_in = true;
+
         res.status(201).json(newUser);
         console.log("New user added successfully!");
       } catch (error) {
