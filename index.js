@@ -166,7 +166,6 @@ async function startApp() {
         const { description, spending, date_created, name } = req.body;
     
         // Use the user_id from the session
-        const user_id = req.session.user_id;
     
         // Create a new expense
         const newExpense = await Expense.create({
