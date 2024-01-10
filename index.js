@@ -56,7 +56,7 @@ async function startApp() {
 
     app.set('views', './views')
 
-    app.get('/login', (req, res) => {
+    app.get('/signup', (req, res) => {
       res.render('partials/login');
     });
 
@@ -96,6 +96,10 @@ async function startApp() {
       res.render('login');
     });
 
+    app.get('/', (req, res) => {
+      res.redirect('signup');
+    })
+
     app.post('/register', async (req, res) => {
       const { username, password } = req.body;
 
@@ -116,7 +120,7 @@ async function startApp() {
       };
     });
 
-    app.post('/login', async (req, res) => {
+    app.post('/signup', async (req, res) => {
       const { username, password } = req.body;
     
       try {
@@ -127,8 +131,7 @@ async function startApp() {
         });
     
         if (!userData) {
-          console.error('User not found');
-          res.status(400).json({ message: 'User not found' });
+          res.redirect('/signup')
           return;
         }
     
