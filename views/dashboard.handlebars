@@ -30,13 +30,6 @@
         Expense</button>
     </form><br>
 
-    <div id="myModal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 overflow-auto">
-      <div class="modal-content bg-white p-8 mx-auto mt-10">
-        <span class="close text-2xl font-bold cursor-pointer absolute top-2 right-4" onclick="closeModal">&times;</span>
-        <p id="modalMessage" class="text-red-500"></p>
-      </div>
-    </div>
-
     <ul>
       {{#each expenses}}
       <li class="mb-2"><b>Name:</b> {{this.name}} <br> <b>Description:</b> {{this.description}} <br> <b>Amount:</b> ${{this.spending}} <br> <b>Date:</b>{{this.date_created}}
@@ -50,9 +43,9 @@
   </div>
   {{/if}}
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../controllers/addExpense.js"></script>
   <script src="../controllers/login.js"></script>
-  <script src="../controllers/modal.js"></script>
   
 </body>
 

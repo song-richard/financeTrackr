@@ -1,5 +1,7 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('login.js loaded successfully!');
+
 
     const registerBtn = document.querySelector('#registerBtn');
     const loginBtn = document.querySelector('#loginBtn');
