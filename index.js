@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const sequelize = require('./config/connection');
 const User = require('./models/User')
 const withAuth = require('./utils/auth');
-const RegisterRoute = require('./controllers/routes/RegisterRoute');
+const RegisterRoute = require('./controllers/routes/registerRoute');
 const Expense = require('./models/Expense');
 const crypto = require('crypto');
 
