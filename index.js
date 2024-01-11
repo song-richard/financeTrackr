@@ -7,12 +7,10 @@ const RegisterRoute = require('./controllers/routes/RegisterRoute');
 const Expense = require('./models/Expense');
 const crypto = require('crypto');
 
-
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-
 
 const PORT = process.env.PORT || 3000;
 
