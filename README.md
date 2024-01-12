@@ -1,6 +1,6 @@
 # financeTrackr
 
-Welcome to financeTrackr! This project is a platform designed to help users manage and track their finances effectively.
+Welcome to financeTrackr! This project is a platform designed to help users manage and track their finances effectively!
 
 ## Features
 

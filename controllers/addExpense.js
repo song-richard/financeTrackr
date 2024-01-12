@@ -1,5 +1,3 @@
-console.log('addExpense.js loaded');
-
 document.addEventListener('DOMContentLoaded', () => {
     const expenseForm = document.getElementById('expenseForm');
 
@@ -28,9 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.reload();
             } else {
                 console.error('Error adding expense');
-            }
+            };
         } catch (error) {
             console.error('Error:', error);
-        }
+        };
     });
 });

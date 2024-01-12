@@ -3,7 +3,7 @@ const withAuth = (req, res, next) => {
       res.redirect('dashboard');
     } else {
       next();
-    }
+    };
   };
   
   module.exports = withAuth;
