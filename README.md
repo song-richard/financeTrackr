@@ -22,6 +22,12 @@ git clone https://github.com/your-username/financeTrackr.git
 
 4. **Visit [http://localhost:3000](http://localhost:3000) in your browser.**
 
+## Link to Deployed Application
+https://shielded-lake-27341-e4a005a4a626.herokuapp.com/
+
+## Link to GitHub Repository
+https://github.com/song-richard/financeTrackr
+
 ## Technologies Used
 
 - HTML
